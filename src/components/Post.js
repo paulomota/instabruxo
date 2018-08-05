@@ -20,16 +20,30 @@ export default class Post extends Component<Props> {
   render() {
     return (
       <View>
-        <View>
+        <View style={styles.cabecalho}>
+            <Image source={require('../../resources/img/ronaldinho.png')} style={styles.fotoDePerfil} />  
             <Text>{this.props.foto.usuario}</Text>   
-            <Image source={require('../../resources/img/ronaldinho.png')} style={{width: 40, height: 40, }} />  
         </View>
-        <Image source={require('../../resources/img/ronaldinho.png')} style={{width: width, height: width}}/>
+        <Image source={require('../../resources/img/ronaldinho.png')} style={styles.foto}/>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  
+    cabecalho: {
+        margin: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    fotoDePerfil: {
+        marginRight: 10,
+        borderRadius: 20,
+        width: 40,
+        height: 40,
+    },
+    foto: {
+        width: width,
+        height: width,
+    },
 });
