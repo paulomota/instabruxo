@@ -37,6 +37,29 @@ export default class Post extends Component<Props> {
         this.setState({foto: fotoAtualizada});
     }
 
+    exibeLikers(likers){
+        likers = [{}, {}];
+
+        if(likers.length == 0)
+            return;
+
+        return (
+            <Text style={styles.likes}>{likers.length} {likers.length > 1 ? 'curtidas' : 'curtida'}</Text>
+        )
+    }
+
+    exibeComentario(foto){
+        if(foto.comentario === '')
+            return;
+
+        return(
+            <View style={styles.comentario}>
+                <Text style={styles.tituloComentario}>{foto.loginUsuario}</Text>
+                <Text>{foto.comentario}</Text>
+            </View>
+        )
+    }
+
   render() {
     const { foto } = this.state;
 
@@ -51,7 +74,11 @@ export default class Post extends Component<Props> {
                 <TouchableOpacity onPress={this.like.bind(this)}>
                     <Image style={styles.botaoDeLike} source={this.carregaIcone(foto.likeada)} />
                 </TouchableOpacity>
+
+                {this.exibeLikers(foto.likers)}
+                {this.exibeComentario(foto)}
             </View>
+            
         </View>
 
         /* codigo com as fotos fixas do ronaldinho
@@ -85,9 +112,20 @@ const styles = StyleSheet.create({
     },
     botaoDeLike: {
         width: 40,
-        height: 40
+        height: 40,
+        marginBottom: 10
     },
     rodape: {
         margin: 10
+    },
+    likes: {
+        fontWeight: 'bold'
+    },
+    comentario: {
+        flexDirection: 'row'
+    },
+    tituloComentario: {
+        fontWeight: 'bold',
+        marginRight: 5
     }
 });
